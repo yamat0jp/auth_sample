@@ -27,7 +27,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth();
+const auth = getAuth(app);
 
   onAuthStateChanged(auth,(user) => {
     if (user){
@@ -39,7 +39,7 @@ const auth = getAuth();
   function login(){
     let email = document.querySelector('#email').value;
     let password = document.querySelector('#password').value;
-    const auth = getAuth();
+    const auth = getAuth(app);
     signInWithEmailAndPassword(auth,email,password)
       .then((user) => {
         console.log(user.email+' Sign in successfully.');
@@ -51,7 +51,7 @@ const auth = getAuth();
   }
 
   function logout(){
-    const auth = getAuth();
+    const auth = getAuth(app);
     signOut(auth);
     document.getElementById('msg').textContent = 'no login...';
   }
